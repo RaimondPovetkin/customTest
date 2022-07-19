@@ -45,5 +45,53 @@ export default {
 </script>
 
 <style lang="scss">
-
+@import "./src/assets/styles/style";
+.feedback{
+  background: url(/src/assets/images/background_feedback.png);
+  .feedback-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $padding-mobile-0;
+  }
+}
+@media (min-width: 768px) {
+  .feedback{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .feedback-content{
+      margin-bottom: 40px;
+      width: $width768px;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .feedback{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .feedback-content{
+      margin-bottom: 60px;
+      width: $width1024px;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0;
+    }
+  }
+}
+@media (min-width: 1280px) {
+  .feedback{
+    .feedback-content{
+      width: $width1280px;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0;
+    }
+  }
+}
 </style>

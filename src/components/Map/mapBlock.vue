@@ -56,7 +56,7 @@ created(){
 let map
 
 function init() {
-	 map = new ymaps.Map('map-test', {
+	 mapBlock = new ymaps.Map('map-test', {
 		center: center,
 		zoom: 10
 	});
@@ -71,7 +71,7 @@ function init() {
 		iconImageOffset: [-19, -44]
 	});
 
-    map.geoObjects.add(placemark);
+    mapBlock.geoObjects.add(placemark);
 }
 
 ymaps.ready(init);

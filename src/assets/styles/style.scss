@@ -1,40 +1,40 @@
 @mixin Montserrat400 {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
 }
 @mixin Montserrat600 {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
 }
 @mixin Montserrat700 {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
 }
 @mixin OpenSans400 {
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
   line-height: 40px;
 }
 @mixin OpenSans700 {
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 40px;
   line-height: 54px;
 }
 @mixin NotoSans400 {
-  font-family: 'Noto Sans';
+  font-family: 'Noto Sans', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -128,8 +128,39 @@ a{
     font-size: 18px;
     line-height: 25px;
   }
-}
-.logo{
-  width: 105px;
-  height: 26px;
+  @media (max-width: 285px) {
+    height: 45px;
+    &__inner{
+      font-size: 15px;
+      line-height: 15px;
+    }
+  }
+  @media (min-width: 412px) {
+    height: 105px;
+    &__inner{
+      font-size: 23px;
+      line-height: 29px;
+    }
+  }
+  @media (min-width: 768px) {
+    height: 125px;
+    &__inner{
+      font-size: 29px;
+      line-height: 33px;
+    }
+  }
+  @media (min-width: 1024px) {
+    height: 165px;
+    &__inner{
+      font-size: 35px;
+      line-height: 45px;
+    }
+  }
+  @media (min-width: 1280px) {
+    height: 198px;
+    &__inner{
+      font-size: 40px;
+      line-height: 54px;
+    }
+  }
 }

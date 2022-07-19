@@ -73,3 +73,140 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+@import "./src/assets/styles/style";
+.catalog{
+  &-card {
+    width: 290px;
+    height: 316px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    box-shadow: 0px 4.90486px 11.0359px rgba(0, 0, 0, 0.15);
+    &__img-box{
+      position: relative;
+    }
+    &__img{
+      border-radius: 3px 3px 0 0;
+    }
+    &__name{
+      @include NotoSans400;
+      font-size: 12.115px;
+      line-height: 17px;
+    }
+    &__description-block{
+      padding: 8px 18px 18px 18px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    &__package{
+      display: flex;
+      justify-content: space-between;
+    }
+    &__compl-block{
+      @include NotoSans400;
+      display: flex;
+      align-items: center;
+      font-size: 12.1254px;
+      line-height: 17px;
+    }
+    &__price{
+      @include Montserrat700;
+      font-size: 16px;
+      line-height: 20px;
+    }
+    &__count{
+      /*             text-decoration: none;
+                  padding: 0px 16px;
+                  border: 1px solid rgb(182, 182, 182);
+                  border-radius: 2px;
+                  margin-right: 3px; */
+      input{
+        border: 1px solid rgb(182, 182, 182);
+        width: 50px;
+        padding: 0px 6px;
+        border-radius: 2px;
+        margin-right: 3px;
+        text-align: center;
+      }
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+    &__button{
+      @include OpenSans400;
+      font-size: 12px;
+      line-height: 17px;
+      display: flex;
+      justify-content: flex-end;
+      & a{
+        padding: 8px 20px;
+        border: 1px solid rgb(83, 83, 83);
+        border-radius: 2px;
+        margin-right: -3px;
+        &:hover{
+          background-color: #F0F0F0;
+        }
+      }
+
+    }
+  }
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+  &-content {
+    margin: 30% auto;
+    width: 100%;
+    display: block;
+    max-width: 500px;
+  }
+}
+@media (min-width: 768px) {
+  .catalog{
+    &-card {
+      margin: 0 auto;
+      border-radius: 3px;
+    }
+}
+@media (min-width: 1280px) {
+    &-card {
+      width: 302px;
+      height: 376px;
+      margin: 0 auto;
+      border-radius: 3px;
+      &__img{
+        width: 302px;
+      }
+      &__name{
+        @include NotoSans400;
+      }
+      &__compl-block{
+        font-size: 14px;
+        line-height: 19px;
+      }
+      &__price{
+        @include Montserrat700;
+      }
+      &__button{
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+  }
+}
+</style>
