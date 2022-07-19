@@ -1,0 +1,135 @@
+@mixin Montserrat400 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+@mixin Montserrat600 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+@mixin Montserrat700 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+}
+@mixin OpenSans400 {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+}
+@mixin OpenSans700 {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 54px;
+}
+@mixin NotoSans400 {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+@mixin GreenButton {
+  @include OpenSans700;
+  font-size: 10px;
+  line-height: 14px;
+  a{
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    background: $color-green;
+    padding: 7px 9px;
+    border-radius: 3px;
+
+    &:hover{
+      background: #3BBB03;
+    }
+    &:active{
+      background: #298601;
+    }
+  }
+  @media (min-width: 768px) {
+    font-size: 13px;
+    a{
+      padding: 10px 22px;
+    }
+  }
+  @media (min-width: 1024px) {
+    font-size: 16px;
+    a{
+      padding: 14px 27px;
+    }
+  }
+  @media (min-width: 1280px) {
+    font-size: 20px;
+    line-height: 27px;
+    a{
+      padding: 18px 32px;
+    }
+  }
+}
+
+$padding-mobile-0: 0 15px;
+$padding-mobile-412: 0 40px;
+
+$width768px:768px;
+$width1024px:1024px;
+$width1280px:1280px;
+
+$color-grey: #2E363E;
+$color-black: #000;
+$color-darkGrey: #212529;
+$color-green: #319F01;
+
+html, body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+}
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ul{
+  padding: 0px;
+  margin: 0;
+}
+li{
+  list-style-type:none;
+}
+a{
+  color: $color-black;
+  text-decoration: none;
+}
+.title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 89px;
+  &__inner{
+    @include OpenSans700;
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+.logo{
+  width: 105px;
+  height: 26px;
+}
