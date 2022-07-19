@@ -24,9 +24,29 @@ export default {
 @import "./src/assets/styles/style";
 .partners{
   &__item{
+    width: 80%;
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+@media (min-width: 412px) {
+  .partners {
+    &__item {
+      width: 60%;
+      margin-bottom: 70px;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .partners {
+    &__item {
+      width: 29%;
+    }
   }
 }
 @media (min-width: 1024px) {
@@ -37,23 +57,17 @@ export default {
       align-items: center;
       justify-content:center;
       margin-bottom: 60px;
-      .img{
-        transform: scale(1.2);
-      }
     }
   }
 }
 @media (min-width: 1280px) {
   .partners{
     &__item{
-      width: 33%;
+      width: 23%;
       display: flex;
       align-items: center;
       justify-content:center;
       margin-bottom: 80px;
-      .img{
-        transform: scale(1.7);
-      }
     }
   }
 }

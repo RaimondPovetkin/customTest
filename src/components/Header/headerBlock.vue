@@ -91,10 +91,6 @@ export default {
   z-index: 200;
   background-color: rgb(255, 255, 255);
   height: 46px;
-  .logo{
-    width: 105px;
-    height: 26px;
-  }
   &__content {
     display: flex;
     align-items: center;
@@ -224,10 +220,6 @@ export default {
     align-items: center;
     justify-content: center;
     height: 116px;
-    .logo{
-      width: 140px;
-      height: auto;
-    }
     &__content{
       width: $width768px;
       height: auto;
@@ -334,9 +326,6 @@ export default {
 }
 @media (min-width: 1024px) {
   .header{
-    .logo{
-      width: 220px;
-    }
     &__content{
       width: $width1024px;
       grid-template-columns: 220px 2.2fr 1.3fr;
@@ -344,9 +333,6 @@ export default {
     }
     &__logo{
       justify-self: center;
-      /*             .logo{
-                      width: 220px;
-                  } */
     }
     &__naw{
       justify-self: center;

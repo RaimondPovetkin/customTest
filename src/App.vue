@@ -8,7 +8,7 @@
   <form-block></form-block>
   <partners-block></partners-block>
   <feed-back></feed-back>
-
+  <footer-block></footer-block>
 
 </template>
 
@@ -22,12 +22,12 @@ import ManufactureBlock from "@/components/Manufacture/manufactureBlock";
 import FormBlock from "@/components/Form/formBlock";
 import PartnersBlock from "@/components/Partners/partnersBlock";
 import FeedBack from "@/components/FeedBack/feedBack";
-
+import FooterBlock from "@/components/Footer/footerBlock";
 
 export default {
   name: 'App',
   components: {
-    HeaderBlock, BannerBlock, AdvantagesBlock, CatalogBlock, WhyAreWe, ManufactureBlock, FormBlock, PartnersBlock, FeedBack
+    HeaderBlock, BannerBlock, AdvantagesBlock, CatalogBlock, WhyAreWe, ManufactureBlock, FormBlock, PartnersBlock, FeedBack, FooterBlock
   }
 }
 </script>

@@ -22,7 +22,7 @@ export default {
     components: { PartnerItem },
     data(){
         return{
-            companiesImg:["sever","zavod","gf1"]
+            companiesImg:["severst","zavod","gf1"]
         }
     }
 }
