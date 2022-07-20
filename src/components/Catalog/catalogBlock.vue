@@ -2,13 +2,13 @@
     <div id="catalog" class="catalog">
         <div class="title">
             <div class="title__inner">
-                ВСЕГДА В НАЛИЧИИ
+                {{ allCrabs.title }}
             </div>
         </div>
         <div class="catalog-content">
 
             <catalogItem
-                v-for="crab in crabs" :key = crab
+                v-for="crab in allCrabs.crabs" :key = crab
                 :crab="crab"
             />
             
@@ -20,33 +20,11 @@
 import catalogItem from './catalogItem.vue'
 export default {
   components: { catalogItem },
-      data(){
-        return{
-            crabs:[
-                {
-                    pic:"crab1",
-                    title:"Т-образная краб-система 20х20", 
-                    price:"20 руб/комп"
-                },
-                {
-                    pic:"crab2",
-                    title:"Х-образная краб-система 20х20", 
-                    price:"20 руб/комп"
-                },
-                {
-                    pic:"crab3",
-                    title:"Т-образная краб-система 25х25", 
-                    price:"25 руб/комп"
-                },
-                {
-                    pic:"crab4",
-                    title:"X-образная краб-система 25х25", 
-                    price:"25 руб/комп"
-                },
-            ],
-        }
-    },
-    
+  computed: {
+    allCrabs() {
+      return this.$store.getters.allCrabs
+    }
+  }
 }
 </script>
 

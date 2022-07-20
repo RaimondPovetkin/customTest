@@ -2,13 +2,13 @@
     <div class="banner banner__block">
         <div class="banner-content">
             <div class="banner-content__title">
-                КРАБ СИСТЕМА
+              {{ banner.title }}
             </div>
             <div class="banner-content__description">
-                Для быстровозводимых каркасных конструкций
+              {{ banner.description }}
             </div>
             <div class="banner-content__button">
-                <a href="#">Получить консультацию</a>
+                <a href="#">{{ banner.buttonText }}</a>
             </div>
         </div>
     </div> 
@@ -17,11 +17,11 @@
 
 <script>
 export default {
-    data(){
-        return{
-            
-        }
+  computed: {
+    banner() {
+      return this.$store.getters.bannerState;
     }
+  }
 }
 </script>
 

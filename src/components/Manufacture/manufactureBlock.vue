@@ -1,42 +1,52 @@
 <template>
-    <div class="manufacture">
-      <div class="title">
-        <div class="title__inner">
-          НАШЕ ПРОИЗВОДСТВО
+  <div class="manufacture">
+    <div class="title">
+      <div class="title__inner">
+        {{ manufacture.title }}
+      </div>
+    </div>
+    <div class="manufacture__content">
+      <div class="video__preview">
+        <div class="video" @click="setVideo">
+
         </div>
       </div>
-        <div class="manufacture__content">
-          <div class="video__preview">
-            <div class="video" @click="setVideo">
-
-            </div>
-          </div>
-        </div>
-        <div class="hide"></div>
     </div>
+    <div class="hide"></div>
+  </div>
 </template>
 
 
 <script>
 export default {
-    methods: {
-        setVideo(e) {
-            e.target.insertAdjacentHTML('afterbegin','<iframe src="https://www.youtube.com/embed/_Gvcrme1WIY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
-        }
+  methods: {
+    setVideo(e) {
+      e.target.insertAdjacentHTML("afterbegin", "<iframe src=\"\" id=\"manufactureVideo\" title=\"\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+      let manufactureVideo = document.getElementById("manufactureVideo")
+      manufactureVideo.src = this.manufacture.linkVideo;
+      manufactureVideo.title = this.manufacture.titleVideo;
     }
-}
+  },
+  computed: {
+    manufacture() {
+      return this.$store.getters.manufactureState;
+    }
+  }
+};
 </script>
 
 <style lang="scss">
 @import "./src/assets/styles/style";
-.manufacture{
+
+.manufacture {
   width: 100%;
   background-image: url(/src/assets/images/background_crab.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   margin: 0 auto;
-  .manufacture__title{
+
+  .manufacture__title {
     @include OpenSans700;
     font-size: 18px;
     line-height: 25px;
@@ -45,30 +55,35 @@ export default {
     justify-content: center;
     height: 100px;
   }
-  .manufacture__content{
+
+  .manufacture__content {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    align-items:center ;
+    align-items: center;
     max-width: 1280px;
-    .video{
+
+    .video {
       position: relative;
       width: 100%;
       padding-top: 56.25%;
       background: url(/src/assets/images/play.svg) no-repeat center;
       background-size: 10%;
-      &__preview{
+
+      &__preview {
         width: 100%;
         height: 100%;
         background: url(/src/assets/images/VideoPreview.png) no-repeat center;
         background-size: cover;
       }
     }
-    .video:hover{
+
+    .video:hover {
       cursor: pointer;
       background-size: 12%;
     }
-    .video iframe{
+
+    .video iframe {
       position: absolute;
       top: 0;
       right: 0;
@@ -78,55 +93,64 @@ export default {
       height: 100%;
     }
   }
-  .hide{
+
+  .hide {
     height: 40px;
     width: 10px;
   }
 }
+
 @media (min-width: 412px) {
-  .manufacture{
-    .manufacture__title{
+  .manufacture {
+    .manufacture__title {
       font-size: 25px;
       line-height: 29px;
       height: 100px;
     }
-    .hide{
+
+    .hide {
       height: 60px;
     }
   }
 }
+
 @media (min-width: 768px) {
-  .manufacture{
-    .manufacture__title{
+  .manufacture {
+    .manufacture__title {
       font-size: 29px;
       line-height: 33px;
       height: 120px;
     }
-    .hide{
+
+    .hide {
       height: 80px;
     }
   }
 }
+
 @media (min-width: 1024px) {
-  .manufacture{
-    .manufacture__title{
+  .manufacture {
+    .manufacture__title {
       font-size: 35px;
       line-height: 45px;
       height: 150px;
     }
-    .hide{
+
+    .hide {
       height: 100px;
     }
   }
 }
+
 @media (min-width: 1280px) {
-  .manufacture{
-    .manufacture__title{
+  .manufacture {
+    .manufacture__title {
       font-size: 40px;
       line-height: 54px;
       height: 170px;
     }
-    .hide{
+
+    .hide {
       height: 120px;
     }
   }

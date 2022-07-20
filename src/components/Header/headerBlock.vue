@@ -1,96 +1,106 @@
 <template>
-    <div>
-        <header id="header" class="header">
-            <div class="header__content">
-                <a href="#" class="header__logo">
-                    <img class="logo" src="./img/logo.svg" alt="">
-                </a>
-                <input id="header__hidden-check" type="checkbox" />
-                <label class='header__menu-button' for="header__hidden-check">
-                    <div class='menu-button'>
-                        <img src="./img/b.svg" alt="">
-                    </div>
-                </label>
-                <naw class="header__naw">
-                    <a href="#catalog" class="header__link" @click="goToBlock">Каталог</a>
-                    <a href="#form" class="header__link" @click="goToBlock">Расчёт стоимости</a>         
-                    <a href="#partners" class="header__link" @click="goToBlock">Партнёры</a>
-                    <a href="#feedback" class="header__link" @click="goToBlock">Отзывы</a>
-                </naw>
-                <div class="header__contacts">
-                    <div class="select-block">
-                        <img class="select-block__logo" src="./img/map-marker.svg" alt="map-marker">
-                        <a class="select-block__link" href="#">{{ $store.state.page.cities[$store.state.page.index].city }}</a>
-                        <a class="select-block__row" href="#popup">Все города</a>
-                    </div>
-                    <div class="select-block">
-                        <img class="select-block__logo" src="./img/phone.svg" alt="phone">
-                        <a class="select-block__link" href="#">{{$store.state.page.cities[$store.state.page.index].contacts}}</a>
-                        <a class="select-block__row" href="#">Заказать звонок</a>
-                    </div>
-                </div>
+  <div>
+    <header id="header" class="header">
+      <div class="header__content">
+        <a href="#" class="header__logo">
+          <img class="logo" src="./img/logo.svg" alt="">
+        </a>
+        <input id="header__hidden-check" type="checkbox"/>
+        <label class='header__menu-button' for="header__hidden-check">
+          <div class='menu-button'>
+            <img src="./img/b.svg" alt="">
+          </div>
+        </label>
+        <naw class="header__naw">
+          <a href="#catalog" class="header__link" @click="goToBlock">Каталог</a>
+          <a href="#form" class="header__link" @click="goToBlock">Расчёт стоимости</a>
+          <a href="#partners" class="header__link" @click="goToBlock">Партнёры</a>
+          <a href="#feedback" class="header__link" @click="goToBlock">Отзывы</a>
+        </naw>
+        <div class="header__contacts">
+          <div class="select-block">
+            <img class="select-block__logo" src="./img/map-marker.svg" alt="map-marker">
+            <a class="select-block__link" href="#">{{ $store.state.page.cities[$store.state.page.index].city }}</a>
+            <a class="select-block__row" href="#" @click="openPopap">Все города</a>
+          </div>
+          <div class="select-block">
+            <img class="select-block__logo" src="./img/phone.svg" alt="phone">
+            <a class="select-block__link" href="#">{{ $store.state.page.cities[$store.state.page.index].contacts }}</a>
+            <a class="select-block__row" href="#">Заказать звонок</a>
+          </div>
+        </div>
 
-                <div id="popup" class="popup">
-                    <a href="#header" class="popup__area"></a>
-                    <div class="popup__body">
-                        <div class="popup__content">
-                            <a href="#header" class="popup__close">
-                                <img src="./img/close.svg" alt="">
-                            </a>
-                            <div class="popup__title">Выберите город</div>
-                            <div class="popup__text">
-                                <span @click="$store.commit('changeIndex',0)">Москва</span>
-                                <span @click="$store.commit('changeIndex',1)">Сочи</span>
-                                <span @click="$store.commit('changeIndex',2)">Вологда</span>
-                                <span @click="$store.commit('changeIndex',3)">Череповец</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div v-if="openPop" id="popup" class="popup">
+          <a href="#header" class="popup__area" @click.self="closePopap"></a>
+          <div class="popup__body">
+            <div class="popup__content">
+              <a href="#header" class="popup__close" @click="closePopap">
+                <img src="./img/close.svg" alt="">
+              </a>
+              <div class="popup__title">Выберите город</div>
+              <div class="popup__text" @click='closePopap'>
+                <span @click="$store.commit('changeIndex',0)">Москва</span>
+                <span @click="$store.commit('changeIndex',1)">Сочи</span>
+                <span @click="$store.commit('changeIndex',2)">Вологда</span>
+                <span @click="$store.commit('changeIndex',3)">Череповец</span>
+              </div>
             </div>
-        </header>
-    </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            
-        }
+  data() {
+    return {
+      openPop: false
+    };
+  },
+  methods: {
+    openPopap() {
+      this.openPop = true;
+      document.body.style.overflow = "hidden";
     },
-    methods: {
-        goToBlock(e){
-            e.preventDefault()
-            let item=e.target
-            let coordY = document.querySelector(item.getAttribute('href')).getBoundingClientRect().top + window.pageYOffset;
+    closePopap() {
+      this.openPop = false;
+      document.body.style.overflow = "";
+    },
+    goToBlock(e) {
+      e.preventDefault();
+      let item = e.target;
+      let coordY = document.querySelector(item.getAttribute("href")).getBoundingClientRect().top + window.pageYOffset;
 
-            let scroller = setInterval(function() {
-                let scrollBy = coordY / 20;
-    
-                if(scrollBy > window.pageYOffset - coordY && window.innerHeight + window.pageYOffset < document.body.offsetHeight) {
-                window.scrollBy(0, scrollBy);
-                } else {
-                window.scrollTo(0, coordY);
-                clearInterval(scroller);
-                }
-            }, 300 / 20);
+      let scroller = setInterval(function () {
+        let scrollBy = coordY / 20;
+
+        if (scrollBy > window.pageYOffset - coordY && window.innerHeight + window.pageYOffset < document.body.offsetHeight) {
+          window.scrollBy(0, scrollBy);
+        } else {
+          window.scrollTo(0, coordY);
+          clearInterval(scroller);
         }
-    }   
-}
+      }, 300 / 20);
+    }
+  }
+};
 </script>
 
 <style lang="scss">
 @import "./src/assets/styles/style";
-.header{
+
+.header {
   @include Montserrat400;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 200;
+  z-index: 10;
   background-color: rgb(255, 255, 255);
   height: 46px;
+
   &__content {
     display: flex;
     align-items: center;
@@ -101,12 +111,15 @@ export default {
     height: 46px;
     padding: $padding-mobile-0;
   }
+
   #header__hidden-check {
     display: none;
   }
+
   &__menu-button {
     display: flex;
   }
+
   &__naw {
     position: absolute;
     top: -4px;
@@ -117,6 +130,7 @@ export default {
     justify-content: center;
     align-items: center;
   }
+
   #header__hidden-check ~ .header__naw a {
     height: 0;
     margin: 0;
@@ -124,6 +138,7 @@ export default {
     border: 0;
     transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
   }
+
   #header__hidden-check:checked ~ .header__naw a {
     height: 2.5em;
     padding: 0.5em;
@@ -131,6 +146,7 @@ export default {
     opacity: 1;
     text-decoration: none;
   }
+
   &__naw > a {
     display: flex;
     justify-content: center;
@@ -141,64 +157,75 @@ export default {
     background-color: rgb(255, 255, 255);
     opacity: 0;
   }
+
   &__naw > a:not(:last-child) {
     border-bottom: 1px solid #444;
   }
-  &__contacts{
+
+  &__contacts {
     display: none;
   }
-  .popup{
+
+  .popup {
     position: fixed;
-    color:aliceblue;
+    color: aliceblue;
     width: 100%;
     height: 100%;
     background-color: rgba($color: $color-black, $alpha: 0.5);
     top: 0;
     left: 0;
-    visibility: hidden;
-    &:target{
+
+    &:target {
       opacity: 1;
-      visibility: visible;
     }
-    &__body{
+
+    &__body {
       min-height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 30px 10px;
     }
-    &__content{
-      background-color:  aliceblue;
+
+    &__content {
+      background-color: aliceblue;
+      border-radius: 3px;
       color: $color-black;
       width: 500px;
       max-width: 800px;
       padding: 30px;
       position: relative;
     }
-    &__title{
+
+    &__title {
       text-align: center;
       margin-bottom: 20px;
     }
-    &__text{
+
+    &__text {
       text-align: center;
       display: flex;
       flex-direction: column;
-      span{
+
+      span {
         margin: 5%;
         color: $color-green;
-        &:hover{
+
+        &:hover {
           color: #6cc247;
           transform: scale(1.1);
           cursor: pointer;
         }
       }
     }
-    &__close{
+
+    &__close {
       position: absolute;
-      right: 10px;
-      top: 10px;
+      right: 18px;
+      top: 15px;
     }
-    &__area{
+
+    &__area {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -207,20 +234,23 @@ export default {
     }
   }
 }
+
 @media (min-width: 412px) {
-  .header{
+  .header {
     &__content {
       padding: $padding-mobile-412;
     }
   }
 }
+
 @media (min-width: 768px) {
-  .header{
+  .header {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 116px;
-    &__content{
+
+    &__content {
       width: $width768px;
       height: auto;
       display: grid;
@@ -230,19 +260,23 @@ export default {
       grid-column-gap: 30px;
       padding: 0;
     }
-    &__logo{
+
+    &__logo {
       grid-area: header__logo;
       padding: 0;
       justify-self: center;
 
     }
+
     #header__hidden-check ~ .header__naw a {
       height: auto;
       margin: 0;
     }
+
     &__menu-button {
       display: none;
     }
+
     &__naw {
       grid-area: header__naw;
       position: relative;
@@ -253,6 +287,7 @@ export default {
       list-style-type: none;
       margin: 0;
       padding: 0;
+
       & > a {
         display: inline;
         margin: auto;
@@ -262,42 +297,50 @@ export default {
         opacity: 1;
       }
     }
-    &__link{
+
+    &__link {
       @include Montserrat400;
       margin-right: 10px;
       color: $color-black;
       font-size: 12px;
       text-decoration: none;
-      &:hover{
-        text-decoration:underline 1px;
+
+      &:hover {
+        text-decoration: underline 1px;
         transform: scale(0.95);
       }
-      &:active{
+
+      &:active {
         text-decoration: none;
         font-size: 12px;
         color: #6C6C6C;
       }
-      &:last-child{
+
+      &:last-child {
         margin-right: 0px;
       }
     }
-    &__contacts{
+
+    &__contacts {
       display: flex;
       grid-area: header__contacts;
     }
-    .select-block{
+
+    .select-block {
       display: grid;
       grid-template-columns: 1fr 8fr;
-      grid-template-areas:". ." "select-block__logo select-block__link" ". select-block__row" ;
+      grid-template-areas:". ." "select-block__logo select-block__link" ". select-block__row";
       grid-template-rows: 1fr 1fr 1fr;
       grid-column-gap: 8px;
       align-items: center;
-      &__logo{
+
+      &__logo {
         grid-area: select-block__logo;
         width: 8px;
         margin-top: -5px;
       }
-      &__link{
+
+      &__link {
         @include Montserrat600;
         grid-area: select-block__link;
         text-decoration: none;
@@ -306,95 +349,115 @@ export default {
         line-height: 24px;
         margin-top: -5px;
       }
-      &__row{
+
+      &__row {
         @include Montserrat400;
         grid-area: select-block__row;
         text-decoration: none;
         color: $color-green;
         font-size: 9px;
         line-height: 17px;
-        &:hover{
-          text-decoration:underline;
+
+        &:hover {
+          text-decoration: underline;
         }
-        &:active{
+
+        &:active {
           color: #298601;
-          text-decoration:none;
+          text-decoration: none;
         }
       }
     }
   }
 }
+
 @media (min-width: 1024px) {
-  .header{
-    &__content{
+  .header {
+    &__content {
       width: $width1024px;
       grid-template-columns: 220px 2.2fr 1.3fr;
       grid-column-gap: 45px;
     }
-    &__logo{
+
+    &__logo {
       justify-self: center;
     }
-    &__naw{
+
+    &__naw {
       justify-self: center;
     }
-    &__link{
+
+    &__link {
       @include Montserrat400;
       margin-right: 20px;
       font-size: 18px;
       text-decoration: none;
-      &:active{
+
+      &:active {
         text-decoration: none;
         font-size: 18px;
       }
     }
-    &__contacts{
+
+    &__contacts {
       justify-content: space-between;
     }
-    .select-block{
-      &__logo{
+
+    .select-block {
+      &__logo {
         width: auto;
       }
-      &__link{
+
+      &__link {
         font-size: 14px;
         line-height: 24px;
       }
-      &__row{
+
+      &__row {
         font-size: 12px;
         line-height: 17px;
       }
     }
   }
 }
+
 @media (min-width: 1280px) {
-  .header{
-    &__content{
+  .header {
+    &__content {
       width: $width1280px;
       grid-template-columns: 220px 2.3fr 1.3fr;
       grid-column-gap: 50px;
     }
-    &__logo{
+
+    &__logo {
       justify-self: center;
     }
-    &__naw{
+
+    &__naw {
       justify-self: center;
       padding-right: 36px;
     }
-    &__link{
+
+    &__link {
       @include Montserrat400;
       margin-right: 44px;
       text-decoration: none;
-      &:active{
+
+      &:active {
         text-decoration: none;
         font-size: 20px;
       }
     }
-    &__contacts{
-      .select-block{
+
+    &__contacts {
+      .select-block {
         grid-column-gap: 8px;
-        &__link{
+
+        &__link {
           @include Montserrat600;
         }
-        &__row{
+
+        &__row {
           font-size: 14px;
           line-height: 17px;
         }

@@ -29,7 +29,9 @@ export const pageModele={
         index:2,
     }),
     getters:{
-
+        allCitiesState(state) {
+            return state
+        }
     },
     mutations:{
         changeIndex(state,i){
