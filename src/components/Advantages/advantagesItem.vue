@@ -35,7 +35,6 @@ export default {
 
 <style lang="scss">
 @import "./src/assets/styles/style";
-
 .advantages-box {
   display: flex;
   align-items: flex-start;
@@ -58,7 +57,6 @@ export default {
     width: 50px;
   }
 }
-
 @media (min-width: 412px) {
   .advantages-box {
     &__explanation {
@@ -80,7 +78,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 768px) {
   .advantages-box {
     display: flex;
@@ -104,7 +101,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 1024px) {
   .advantages-box {
     width: 100%;
@@ -127,7 +123,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 1280px) {
   .advantages-box {
     width: 100%;

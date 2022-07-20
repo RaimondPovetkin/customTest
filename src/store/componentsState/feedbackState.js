@@ -21,7 +21,10 @@ export const feedbackState={
     }),
     getters:{
         allComments(state) {
-            return state
+            return state.comments
+        },
+        allCommentsTitle(state) {
+            return state.title
         }
     }
 }

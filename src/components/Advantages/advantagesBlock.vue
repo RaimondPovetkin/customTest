@@ -2,12 +2,12 @@
     <div class="advantages">
         <div class="title">
             <div class="title__inner">
-                {{ allAdvantages.title }}
+                {{ titleAdvantage }}
             </div> 
         </div>
         <div class="advantages-content">
             <advantagesItem
-                v-for="advantage in allAdvantages.advantages" :key = advantage
+                v-for="advantage in allAdvantages" :key = advantage
                 :advantage="advantage" 
             />
         </div>
@@ -16,13 +16,11 @@
 
 <script>
 import advantagesItem from './advantagesItem.vue'
+import {mapGetters} from "vuex";
+
 export default {
   components: { advantagesItem },
-  computed: {
-    allAdvantages() {
-      return this.$store.getters.allAdvantages
-    }
-  }
+  computed: mapGetters(["allAdvantages","titleAdvantage"])
 }
 </script>
 

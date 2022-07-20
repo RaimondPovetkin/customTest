@@ -4,8 +4,8 @@
             <div class="form__bg"></div>
             <div class="form__content">
                 <div class="form__title-box">
-                    <div class="form__title">ОСТАВИТЬ ЗАЯВКУ</div>
-                    <div class="form__description">НА РАСЧЁТ СТОИМОСТИ</div>
+                    <div class="form__title">{{ formStateTitle }}</div>
+                    <div class="form__description">{{ formStateDescription }}</div>
                 </div>
                 <form class="form-inner" action="/login" method="post">
                     <div class="text-field">
@@ -18,13 +18,13 @@
                             <input class="text-field__input mail" type="email" placeholder="E-mail">
                         </div>
                     </div>
-                    <div class="form-inner__submit">
-                        <a  href="#">Заказать расчёт цены</a>
+                    <div>
+                      <button class="form-inner__submit">{{ formStateButtonText }}</button>
                     </div>
                     <div class="form-inner__checkbox">
                         <label class="form-inner__custom-checkbox">
                         <input type="checkbox" name="color-1" value="indigo">
-                        <span>Соглашаюсь с &ensp; <a href="#"> условиями передачи данных</a> </span>
+                        <span>{{ formStateRulesText }}&nbsp;<a href="#">{{ formStateRulesLink }}</a> </span>
                         </label>
                     </div>
                 </form>
@@ -34,8 +34,10 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-    
+  computed: mapGetters(["formStateTitle","formStateDescription", "formStateButtonText", "formStateRulesText", "formStateRulesLink"])
 }
 </script>
 
@@ -55,7 +57,7 @@ export default {
     right: 0;
   }
   &__content {
-    z-index: 100;
+    z-index: 5;
     margin: 49px auto;
     width: 235px;
     height: 294px;
@@ -136,10 +138,7 @@ export default {
       @include OpenSans700;
       font-size: 13.1397px;
       line-height: 18px;
-      margin-top: 6px;
-      a{
-        padding: 7px 22px;
-      }
+      padding: 7px 22px;
     }
     &__checkbox{
       margin-top: 2%;
@@ -246,10 +245,7 @@ export default {
       &__submit{
         font-size: 15px;
         line-height: 17px;
-        margin-top: 10px;
-        a{
-          padding: 9px 20px;
-        }
+        padding: 9px 20px;
       }
       &__custom-checkbox>span {
         font-size: 8px;
@@ -306,10 +302,7 @@ export default {
         font-size: 18px;
         line-height: 22px;
         height: 2.5rem;
-        margin-top: 8px;
-        a{
-          padding: 8px 27px;
-        }
+        padding: 8px 27px;
       }
       &__custom-checkbox>span {
         margin-top: -25px;
@@ -361,10 +354,7 @@ export default {
         font-size: 21px;
         line-height: 26px;
         height: 4rem;
-        margin-top: 20px;
-        a{
-          padding: 18px 66px;
-        }
+        padding: 18px 66px;
       }
       &__custom-checkbox>span {
         font-size: 11px;

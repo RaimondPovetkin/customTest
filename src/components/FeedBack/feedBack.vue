@@ -2,30 +2,24 @@
   <div id="feedback" class="feedback">
     <div class="title">
       <div class="title__inner">
-        {{ allComments.title }}
+        {{ allCommentsTitle }}
       </div>
     </div>
     <div class="feedback-content">
-
       <feedBackItem
-          v-for="comment in allComments.comments" :key=comment
+          v-for="comment in allComments" :key=comment
           :comment="comment"
       />
-
     </div>
   </div>
 </template>
 
 <script>
 import feedBackItem from "./feedBackItem.vue";
-
+import {mapGetters} from "vuex";
 export default {
   components: {feedBackItem},
-  computed: {
-    allComments() {
-      return this.$store.getters.allComments;
-    }
-  }
+  computed: mapGetters(["allCommentsTitle", "allComments"])
 };
 </script>
 
@@ -33,7 +27,6 @@ export default {
 @import "./src/assets/styles/style";
 .feedback {
   background: url(/src/assets/images/background_feedback.png);
-
   .feedback-content {
     display: flex;
     flex-direction: column;
@@ -47,7 +40,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     .feedback-content {
       margin-bottom: 40px;
       width: $width768px;
@@ -62,7 +54,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     .feedback-content {
       margin-bottom: 60px;
       width: $width1024px;

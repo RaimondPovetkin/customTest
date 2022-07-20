@@ -30,7 +30,10 @@ export const advantagesState={
     }),
     getters:{
         allAdvantages(state) {
-            return state
+            return state.advantages
+        },
+        titleAdvantage(state) {
+            return state.title;
         }
     }
 }

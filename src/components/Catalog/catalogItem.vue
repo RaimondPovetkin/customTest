@@ -53,7 +53,6 @@ export default {
       openModal: false
     };
   },
-
   methods: {
     changeInner() {
       this.order = !this.order;
@@ -75,7 +74,6 @@ export default {
 
 <style lang="scss">
 @import "./src/assets/styles/style";
-
 .close {
   position: absolute;
   top: 10%;
@@ -85,14 +83,12 @@ export default {
   font-weight: bold;
   transition: 0.3s;
 }
-
 .close:hover,
 .close:focus {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
 }
-
 .catalog {
   &-card {
     width: 290px;
@@ -187,7 +183,6 @@ export default {
     }
   }
 }
-
 .modal {
   display: block;
   position: fixed;
@@ -207,15 +202,12 @@ export default {
     max-width: 500px;
   }
 }
-
 .modal-content {
-
   margin: 30% auto;
   width: 100%;
   display: block;
   max-width: 500px;
 }
-
 @media (min-width: 768px) {
   .catalog {
     &-card {

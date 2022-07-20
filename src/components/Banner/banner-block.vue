@@ -2,26 +2,24 @@
     <div class="banner banner__block">
         <div class="banner-content">
             <div class="banner-content__title">
-              {{ banner.title }}
+              {{ titleBanner }}
             </div>
             <div class="banner-content__description">
-              {{ banner.description }}
+              {{ descriptionBanner }}
             </div>
-            <div class="banner-content__button">
-                <a href="#">{{ banner.buttonText }}</a>
+            <div>
+              <button class="banner-content__button">
+                {{ buttonTextBanner }}
+              </button>
             </div>
         </div>
     </div> 
 </template>
 
-
 <script>
+import {mapGetters} from "vuex";
 export default {
-  computed: {
-    banner() {
-      return this.$store.getters.bannerState;
-    }
-  }
+  computed: mapGetters(["titleBanner","descriptionBanner","buttonTextBanner"])
 }
 </script>
 

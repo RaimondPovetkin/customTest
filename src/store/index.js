@@ -6,6 +6,8 @@ import {reasonsState} from "@/store/componentsState/reasonsState";
 import {manufactureState} from "@/store/componentsState/manufactureState";
 import {bannerState} from "@/store/componentsState/bannerState";
 import {feedbackState} from "@/store/componentsState/feedbackState";
+import {partnersState} from "@/store/componentsState/partnersState";
+import {formState} from "@/store/componentsState/formState";
 
 export default createStore({
     modules: {
@@ -14,7 +16,9 @@ export default createStore({
         page: pageModele,
         advantages: advantagesState,
         catalog: catalogState,
+        form: formState,
         reasons: reasonsState,
+        partners: partnersState,
         manufacture: manufactureState
 }
 });

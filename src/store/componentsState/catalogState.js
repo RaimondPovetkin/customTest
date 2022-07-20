@@ -25,8 +25,11 @@ export const catalogState={
         title: "ВСЕГДА В НАЛИЧИИ"
     }),
     getters:{
-        allCrabs(state) {
-            return state
+        crabsCatalog(state) {
+            return state.crabs
+        },
+        titleCatalog(state) {
+            return state.title
         }
     }
 }

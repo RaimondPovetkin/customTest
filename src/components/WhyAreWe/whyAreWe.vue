@@ -2,12 +2,12 @@
     <div class="why">
         <div class="title">
             <div class="title__inner">
-                {{ allReasons.title }}
+                {{ titleReasons }}
             </div>
         </div>
         <div class="why-content">
             <whyItem
-                v-for="item in allReasons.reasons" :key = item
+                v-for="item in allReasons" :key = item
                 :item="item"
             />
         </div>
@@ -16,13 +16,10 @@
 
 <script>
 import whyItem from './whyItem.vue'
+import {mapGetters} from "vuex";
 export default {
   components: { whyItem },
-  computed: {
-    allReasons() {
-      return this.$store.getters.allReasons
-    }
-  }
+  computed: mapGetters(["titleReasons","allReasons"])
 }
 </script>
 

@@ -2,29 +2,25 @@
     <div id="catalog" class="catalog">
         <div class="title">
             <div class="title__inner">
-                {{ allCrabs.title }}
+                {{ titleCatalog }}
             </div>
         </div>
         <div class="catalog-content">
-
             <catalogItem
-                v-for="crab in allCrabs.crabs" :key = crab
+                v-for="crab in crabsCatalog" :key = crab
                 :crab="crab"
             />
-            
         </div>
     </div>
 </template>
 
 <script>
 import catalogItem from './catalogItem.vue'
+import {mapGetters} from "vuex";
+
 export default {
   components: { catalogItem },
-  computed: {
-    allCrabs() {
-      return this.$store.getters.allCrabs
-    }
-  }
+  computed: mapGetters(["crabsCatalog","titleCatalog"])
 }
 </script>
 

@@ -1,15 +1,18 @@
-export const bannerState={
-    state:()=>({
-
+export const bannerState = {
+    state: () => ({
         title: "КРАБ СИСТЕМА",
         description: "Для быстровозводимых каркасных конструкций",
         buttonText: "Получить консультацию"
-
-
     }),
-    getters:{
-        bannerState(state) {
-            return state
+    getters: {
+        titleBanner(state) {
+            return state.title;
+        },
+        descriptionBanner(state) {
+            return state.description;
+        },
+        buttonTextBanner(state) {
+            return state.buttonText;
         }
     }
-}
+};

@@ -8,7 +8,6 @@
                 <div class="footer-content__address">
                     <img src="./img/map-marker.svg" alt="">
                     <div class="footer-content__address-inner">
-                         
                          {{ $store.state.page.cities[$store.state.page.index].address }}
                     </div>
                 </div>

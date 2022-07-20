@@ -26,7 +26,10 @@ export const reasonsState={
     }),
     getters:{
         allReasons(state) {
-            return state
+            return state.reasons
+        },
+        titleReasons(state) {
+            return state.title
         }
     }
 }

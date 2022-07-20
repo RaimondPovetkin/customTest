@@ -45,7 +45,6 @@
   @include OpenSans700;
   font-size: 10px;
   line-height: 14px;
-  a{
     color: #fff;
     text-decoration: none;
     user-select: none;
@@ -59,25 +58,25 @@
     &:active{
       background: #298601;
     }
-  }
+
   @media (min-width: 768px) {
     font-size: 13px;
-    a{
+
       padding: 10px 22px;
-    }
+
   }
   @media (min-width: 1024px) {
     font-size: 16px;
-    a{
+
       padding: 14px 27px;
-    }
+
   }
   @media (min-width: 1280px) {
     font-size: 20px;
     line-height: 27px;
-    a{
+
       padding: 18px 32px;
-    }
+
   }
 }
 
@@ -116,6 +115,10 @@ li{
 a{
   color: $color-black;
   text-decoration: none;
+}
+button{
+  border: none;
+  outline: none;
 }
 .title{
   display: flex;

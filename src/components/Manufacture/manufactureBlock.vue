@@ -2,13 +2,12 @@
   <div class="manufacture">
     <div class="title">
       <div class="title__inner">
-        {{ manufacture.title }}
+        {{ manufactureTitle }}
       </div>
     </div>
     <div class="manufacture__content">
       <div class="video__preview">
         <div class="video" @click="setVideo">
-
         </div>
       </div>
     </div>
@@ -16,28 +15,25 @@
   </div>
 </template>
 
-
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   methods: {
     setVideo(e) {
-      e.target.insertAdjacentHTML("afterbegin", "<iframe src=\"\" id=\"manufactureVideo\" title=\"\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+      e.target.insertAdjacentHTML("afterbegin", "<iframe src=\"\" id=\"manufactureVideo\" title=\"\" frameborder=\"0\"  allowfullscreen></iframe>");
       let manufactureVideo = document.getElementById("manufactureVideo")
-      manufactureVideo.src = this.manufacture.linkVideo;
-      manufactureVideo.title = this.manufacture.titleVideo;
+      manufactureVideo.src = this.manufactureLinkVideo;
+      manufactureVideo.title = this.manufactureTitleVideo;
     }
   },
-  computed: {
-    manufacture() {
-      return this.$store.getters.manufactureState;
-    }
-  }
+  computed: mapGetters(["manufactureTitle", "manufactureLinkVideo","manufactureTitleVideo"])
+
 };
 </script>
 
 <style lang="scss">
 @import "./src/assets/styles/style";
-
 .manufacture {
   width: 100%;
   background-image: url(/src/assets/images/background_crab.png);
@@ -99,7 +95,6 @@ export default {
     width: 10px;
   }
 }
-
 @media (min-width: 412px) {
   .manufacture {
     .manufacture__title {
@@ -113,7 +108,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 768px) {
   .manufacture {
     .manufacture__title {
@@ -127,7 +121,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 1024px) {
   .manufacture {
     .manufacture__title {
@@ -141,7 +134,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 1280px) {
   .manufacture {
     .manufacture__title {

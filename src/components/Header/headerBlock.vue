@@ -11,12 +11,12 @@
             <img src="./img/b.svg" alt="">
           </div>
         </label>
-        <naw class="header__naw">
+        <div class="header__naw">
           <a href="#catalog" class="header__link" @click="goToBlock">Каталог</a>
           <a href="#form" class="header__link" @click="goToBlock">Расчёт стоимости</a>
           <a href="#partners" class="header__link" @click="goToBlock">Партнёры</a>
           <a href="#feedback" class="header__link" @click="goToBlock">Отзывы</a>
-        </naw>
+        </div>
         <div class="header__contacts">
           <div class="select-block">
             <img class="select-block__logo" src="./img/map-marker.svg" alt="map-marker">
