@@ -20,12 +20,12 @@
         <div class="header__contacts">
           <div class="select-block">
             <img class="select-block__logo" src="./img/map-marker.svg" alt="map-marker">
-            <a class="select-block__link" href="#">{{ $store.state.page.cities[$store.state.page.index].city }}</a>
-            <a class="select-block__row" href="#" @click="openPopap">Все города</a>
+            <a class="select-block__link" href="#">{{ getCity }}</a>
+            <a class="select-block__row" href="#" @click.prevent="openPopap">Все города</a>
           </div>
           <div class="select-block">
             <img class="select-block__logo" src="./img/phone.svg" alt="phone">
-            <a class="select-block__link" href="#">{{ $store.state.page.cities[$store.state.page.index].contacts }}</a>
+            <a class="select-block__link" href="#">{{ getContactNumber }}</a>
             <a class="select-block__row" href="#">Заказать звонок</a>
           </div>
         </div>
@@ -34,15 +34,16 @@
           <a href="#header" class="popup__area" @click.self="closePopap"></a>
           <div class="popup__body">
             <div class="popup__content">
-              <a href="#header" class="popup__close" @click="closePopap">
+              <a href="#header" class="popup__close" @click.prevent="closePopap">
                 <img src="./img/close.svg" alt="">
               </a>
               <div class="popup__title">Выберите город</div>
               <div class="popup__text" @click='closePopap'>
-                <span @click="$store.commit('changeIndex',0)">Москва</span>
-                <span @click="$store.commit('changeIndex',1)">Сочи</span>
-                <span @click="$store.commit('changeIndex',2)">Вологда</span>
-                <span @click="$store.commit('changeIndex',3)">Череповец</span>
+                <span v-for="(item, index) in allCitiesState" @click="idx=index" :key="item">
+                  <span>
+                  {{ item.city }}
+                  </span>
+                </span>
               </div>
             </div>
           </div>
@@ -53,18 +54,23 @@
 </template>
 
 <script>
+import {mapMutations, mapGetters} from "vuex";
+
 export default {
   data() {
     return {
-      openPop: false
+      openPop: false,
+      idx: 2
     };
   },
   methods: {
+    ...mapMutations(["changeIndex"]),
     openPopap() {
       this.openPop = true;
       document.body.style.overflow = "hidden";
     },
     closePopap() {
+      this.changeIndex(this.idx);
       this.openPop = false;
       document.body.style.overflow = "";
     },
@@ -83,6 +89,15 @@ export default {
           clearInterval(scroller);
         }
       }, 300 / 20);
+    }
+  },
+  computed: {
+    ...mapGetters(["allCitiesState"]),
+    getCity(){
+      return this.allCitiesState[this.idx].city
+    },
+    getContactNumber(){
+      return this.allCitiesState[this.idx].contacts
     }
   }
 };

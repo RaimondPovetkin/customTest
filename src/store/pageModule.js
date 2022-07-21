@@ -30,15 +30,17 @@ export const pageModele={
     }),
     getters:{
         allCitiesState(state) {
-            return state
+            return state.cities
         }
     },
-    mutations:{
-        changeIndex(state,i){
-            state.index=i;
+    actions: {
+        changeIndex(ctx, i = 2) {
+            ctx.commit('changeIndex', i)
         }
     },
-    actions:{
-
+    mutations: {
+        changeIndex(state, i) {
+            state.index = i
+        }
     }
 }
