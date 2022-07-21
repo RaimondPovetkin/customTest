@@ -17,7 +17,6 @@
 <script>
 import advantagesItem from './advantagesItem.vue'
 import {mapGetters} from "vuex";
-
 export default {
   components: { advantagesItem },
   computed: mapGetters(["allAdvantages","titleAdvantage"])

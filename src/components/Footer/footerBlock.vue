@@ -8,12 +8,12 @@
                 <div class="footer-content__address">
                     <img src="./img/map-marker.svg" alt="">
                     <div class="footer-content__address-inner">
-                         {{ $store.state.page.cities[$store.state.page.index].address }}
+                         {{ allCitiesState[cityIndex].address }}
                     </div>
                 </div>
                 <div class="phone">
                     <img src="./img/phone.svg" alt="">
-                    <div class="footer-content__phone-inner">{{ $store.state.page.cities[$store.state.page.index].contacts }}</div>
+                    <div class="footer-content__phone-inner">{{ allCitiesState[cityIndex].contacts }}</div>
                 </div>
             </div>
         </div>
@@ -21,8 +21,9 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 export default {
-    
+    computed: mapGetters(["allCitiesState", "cityIndex"])
 }
 </script>
 

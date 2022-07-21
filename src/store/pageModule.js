@@ -31,11 +31,9 @@ export const pageModele={
     getters:{
         allCitiesState(state) {
             return state.cities
-        }
-    },
-    actions: {
-        changeIndex(ctx, i = 2) {
-            ctx.commit('changeIndex', i)
+        },
+        cityIndex(state) {
+            return state.index
         }
     },
     mutations: {

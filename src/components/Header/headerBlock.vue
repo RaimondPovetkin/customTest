@@ -12,16 +12,16 @@
           </div>
         </label>
         <div class="header__naw">
-          <a href="#catalog" class="header__link" @click="goToBlock">Каталог</a>
-          <a href="#form" class="header__link" @click="goToBlock">Расчёт стоимости</a>
-          <a href="#partners" class="header__link" @click="goToBlock">Партнёры</a>
-          <a href="#feedback" class="header__link" @click="goToBlock">Отзывы</a>
+          <a href="#catalog" class="header__link" @click.prevent="goToBlock">Каталог</a>
+          <a href="#form" class="header__link" @click.prevent="goToBlock">Расчёт стоимости</a>
+          <a href="#partners" class="header__link" @click.prevent="goToBlock">Партнёры</a>
+          <a href="#feedback" class="header__link" @click.prevent="goToBlock">Отзывы</a>
         </div>
         <div class="header__contacts">
           <div class="select-block">
             <img class="select-block__logo" src="./img/map-marker.svg" alt="map-marker">
-            <a class="select-block__link" href="#">{{ getCity }}</a>
-            <a class="select-block__row" href="#" @click.prevent="openPopap">Все города</a>
+            <a href="#map" class="select-block__link" @click.prevent="goToBlock">{{ getCity }}</a>
+            <a href="#" class="select-block__row" @click.prevent="openPopap">Все города</a>
           </div>
           <div class="select-block">
             <img class="select-block__logo" src="./img/phone.svg" alt="phone">
@@ -29,7 +29,6 @@
             <a class="select-block__row" href="#">Заказать звонок</a>
           </div>
         </div>
-
         <div v-if="openPop" id="popup" class="popup">
           <a href="#header" class="popup__area" @click.self="closePopap"></a>
           <div class="popup__body">
@@ -39,7 +38,7 @@
               </a>
               <div class="popup__title">Выберите город</div>
               <div class="popup__text" @click='closePopap'>
-                <span v-for="(item, index) in allCitiesState" @click="idx=index" :key="item">
+                <span v-for="(item, index) in allCitiesState" @click="indexCity=index" :key="item">
                   <span>
                   {{ item.city }}
                   </span>
@@ -55,12 +54,11 @@
 
 <script>
 import {mapMutations, mapGetters} from "vuex";
-
 export default {
   data() {
     return {
       openPop: false,
-      idx: 2
+      indexCity: 0
     };
   },
   methods: {
@@ -70,34 +68,24 @@ export default {
       document.body.style.overflow = "hidden";
     },
     closePopap() {
-      this.changeIndex(this.idx);
+      this.changeIndex(this.indexCity);
       this.openPop = false;
       document.body.style.overflow = "";
     },
     goToBlock(e) {
-      e.preventDefault();
-      let item = e.target;
-      let coordY = document.querySelector(item.getAttribute("href")).getBoundingClientRect().top + window.pageYOffset;
-
-      let scroller = setInterval(function () {
-        let scrollBy = coordY / 20;
-
-        if (scrollBy > window.pageYOffset - coordY && window.innerHeight + window.pageYOffset < document.body.offsetHeight) {
-          window.scrollBy(0, scrollBy);
-        } else {
-          window.scrollTo(0, coordY);
-          clearInterval(scroller);
-        }
-      }, 300 / 20);
+      document.querySelector(e.target.getAttribute("href")).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
   },
   computed: {
-    ...mapGetters(["allCitiesState"]),
+    ...mapGetters(["allCitiesState", "cityIndex"]),
     getCity(){
-      return this.allCitiesState[this.idx].city
+      return this.allCitiesState[this.cityIndex].city
     },
     getContactNumber(){
-      return this.allCitiesState[this.idx].contacts
+      return this.allCitiesState[this.cityIndex].contacts
     }
   }
 };
@@ -105,7 +93,6 @@ export default {
 
 <style lang="scss">
 @import "./src/assets/styles/style";
-
 .header {
   @include Montserrat400;
   position: fixed;
@@ -249,7 +236,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 412px) {
   .header {
     &__content {
@@ -257,7 +243,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 768px) {
   .header {
     display: flex;
@@ -385,7 +370,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 1024px) {
   .header {
     &__content {
@@ -435,7 +419,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 1280px) {
   .header {
     &__content {

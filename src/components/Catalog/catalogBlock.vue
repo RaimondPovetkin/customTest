@@ -17,7 +17,6 @@
 <script>
 import catalogItem from './catalogItem.vue'
 import {mapGetters} from "vuex";
-
 export default {
   components: { catalogItem },
   computed: mapGetters(["crabsCatalog","titleCatalog"])

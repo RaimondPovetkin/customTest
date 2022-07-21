@@ -32,7 +32,6 @@ export default {
 
 <style lang="scss">
 @import "./src/assets/styles/style";
-
 .feedback-content {
   &__box {
     display: flex;
@@ -63,7 +62,6 @@ export default {
     line-height: 15px;
   }
 }
-
 @media (min-width: 768px) {
   .feedback-content {
     &__box {
@@ -98,7 +96,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 1024px) {
   .feedback-content {
     &__box {
@@ -133,7 +130,6 @@ export default {
     }
   }
 }
-
 @media (min-width: 1280px) {
   .feedback-content {
     &__box {
