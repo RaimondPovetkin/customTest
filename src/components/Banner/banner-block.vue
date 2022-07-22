@@ -34,7 +34,7 @@ export default {
   background-position: center center;
   background-size: cover;
   &__block{
-    margin-top: 46px;
+    //margin-top: 46px;
   }
   .banner-content{
     margin: auto;
@@ -74,7 +74,7 @@ export default {
   .banner{
     height: 330px;
     &__block{
-      margin-top: 116px;
+      //margin-top: 116px;
     }
     .banner-content{
       width: $width768px;

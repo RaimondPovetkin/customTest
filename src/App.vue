@@ -1,15 +1,19 @@
 <template>
-  <header-block></header-block>
-  <banner-block></banner-block>
-  <advantages-block></advantages-block>
-  <catalog-block></catalog-block>
-  <why-are-we></why-are-we>
-  <manufacture-block></manufacture-block>
-  <form-block></form-block>
-  <partners-block></partners-block>
-  <feed-back></feed-back>
-  <map-block></map-block>
-  <footer-block></footer-block>
+  <div class="content" :class="{'content__padding': scrollShow==true}">
+    <header-block
+        :scroll-show="this.scrollShow"
+    ></header-block>
+    <banner-block></banner-block>
+    <advantages-block></advantages-block>
+    <catalog-block></catalog-block>
+    <why-are-we></why-are-we>
+    <manufacture-block></manufacture-block>
+    <form-block></form-block>
+    <partners-block></partners-block>
+    <feed-back></feed-back>
+    <map-block></map-block>
+    <footer-block></footer-block>
+  </div>
 
 </template>
 
@@ -27,6 +31,12 @@ import FooterBlock from "@/components/Footer/footerBlock";
 import MapBlock from "@/components/Map/mapBlock";
 
 export default {
+  data() {
+    return {
+      scrollShow: false,
+      deviceWidth: window.innerWidth,
+    };
+  },
   name: "App",
   components: {
     HeaderBlock,
@@ -45,6 +55,10 @@ export default {
     getPic(pic, ext, dir) {
       let folder = dir ? dir + "/" : "";
       return require("/src/assets/images/" + folder + pic + "." + ext);
+    },
+    onScroll() {
+      let header = document.querySelector("header");
+      this.scrollShow = window.scrollY > header.offsetHeight;
     }
   },
   provide() {
@@ -53,6 +67,12 @@ export default {
       getPic: this.getPic,
     };
   },
+  beforeUnmount() {
+    window.removeEventListener("scroll")
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  }
 };
 </script>
 

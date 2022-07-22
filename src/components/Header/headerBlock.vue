@@ -1,9 +1,13 @@
 <template>
   <div>
-    <header id="header" class="header">
+    <header id="header"
+            class="header"
+            :class="{'header-move': scrollShow}"
+    >
       <div class="header__content">
         <a href="#banner" class="header__logo" @click.prevent="goToBlock">
-          <img href="#banner" class="logo" :src=getPic(imagesPage.logoImg.name,imagesPage.logoImg.ext,imagesPage.dir) alt="">
+          <img href="#banner" class="logo" :src=getPic(imagesPage.logoImg.name,imagesPage.logoImg.ext,imagesPage.dir)
+               alt="">
         </a>
         <input id="header__hidden-check" type="checkbox"/>
         <label class='header__menu-button' for="header__hidden-check">
@@ -19,12 +23,14 @@
         </div>
         <div class="header__contacts">
           <div class="select-block">
-            <img class="select-block__logo" :src=getPic(imagesPage.mapImg.name,imagesPage.mapImg.ext,imagesPage.dir) alt="map-marker">
+            <img class="select-block__logo" :src=getPic(imagesPage.mapImg.name,imagesPage.mapImg.ext,imagesPage.dir)
+                 alt="map-marker">
             <a href="#map" class="select-block__link" @click.prevent="goToBlock">{{ getCity }}</a>
             <a href="#" class="select-block__row" @click.prevent="openPopap">Все города</a>
           </div>
           <div class="select-block">
-            <img class="select-block__logo" :src=getPic(imagesPage.phoneImg.name,imagesPage.phoneImg.ext,imagesPage.dir) alt="phone">
+            <img class="select-block__logo" :src=getPic(imagesPage.phoneImg.name,imagesPage.phoneImg.ext,imagesPage.dir)
+                 alt="phone">
             <a class="select-block__link" href="#">{{ getContactNumber }}</a>
             <a class="select-block__row" href="#">Заказать звонок</a>
           </div>
@@ -52,7 +58,11 @@
 
 <script>
 import {mapMutations, mapGetters} from "vuex";
+
 export default {
+  props: {
+    scrollShow: Boolean
+  },
   data() {
     return {
       openPop: false,
@@ -72,18 +82,18 @@ export default {
     },
     goToBlock(e) {
       document.querySelector(e.target.getAttribute("href")).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+        behavior: "smooth",
+        block: "start"
       });
     }
   },
   computed: {
     ...mapGetters(["allCitiesState", "cityIndex", "imagesPage"]),
-    getCity(){
-      return this.allCitiesState[this.cityIndex].city
+    getCity() {
+      return this.allCitiesState[this.cityIndex].city;
     },
-    getContactNumber(){
-      return this.allCitiesState[this.cityIndex].addresses[0].contacts
+    getContactNumber() {
+      return this.allCitiesState[this.cityIndex].addresses[0].contacts;
     }
   },
   inject: ["getPic"],
@@ -92,15 +102,22 @@ export default {
 
 <style lang="scss">
 @import "./src/assets/styles/style";
+
 .header {
   @include Montserrat400;
-  position: fixed;
+  position: static;
   width: 100%;
-  top: 0;
+  top: -97px;
   left: 0;
   z-index: 10;
   background-color: rgb(255, 255, 255);
   height: 46px;
+
+  &-move {
+    transition: top 0.5s;
+    position: fixed;
+    top: 0;
+  }
 
   &__content {
     display: flex;
@@ -235,6 +252,7 @@ export default {
     }
   }
 }
+
 @media (min-width: 412px) {
   .header {
     &__content {
@@ -242,6 +260,7 @@ export default {
     }
   }
 }
+
 @media (min-width: 768px) {
   .header {
     display: flex;
@@ -369,6 +388,7 @@ export default {
     }
   }
 }
+
 @media (min-width: 1024px) {
   .header {
     &__content {
@@ -418,6 +438,7 @@ export default {
     }
   }
 }
+
 @media (min-width: 1280px) {
   .header {
     &__content {

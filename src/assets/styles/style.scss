@@ -120,6 +120,14 @@ button{
   border: none;
   outline: none;
 }
+.content{
+  &__padding{
+    @media (min-width: 768px) {
+      padding-top: 115px;
+    }
+    padding-top: 45px;
+  }
+}
 .title{
   display: flex;
   flex-direction: column;
