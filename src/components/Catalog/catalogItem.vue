@@ -1,7 +1,7 @@
 <template>
   <div class="catalog-card">
     <div class="catalog-card__img-box">
-      <img class="catalog-card__img" :src=getPic(crab.pic) @click="showPre" alt="">
+      <img class="catalog-card__img" :src=getPic(crab.pic,img.ext,img.dir) @click="showPre" alt="">
     </div>
     <div class="catalog-card__description-block">
       <div class="catalog-card__name">
@@ -24,7 +24,7 @@
         <div class="catalog-card__button">
           <a href="#" @click.prevent="changeInner">
             <span v-if="!order">Заказать</span>
-            <span v-if="order">Отменить</span>
+            <span v-else>Отменить</span>
           </a>
         </div>
       </div>
@@ -32,7 +32,7 @@
     <div>
       <div v-if="openModal" id="myModal" class="modal" @click.self="closePre">
         <span class="close" @click="closePre">×</span>
-        <img :src=getPic(crab.pic) class="modal-content" id="img01">
+        <img :src=getPic(crab.pic,img.ext,img.dir) class="modal-content" id="img01">
       </div>
     </div>
   </div>
@@ -42,6 +42,10 @@
 export default {
   props: {
     crab: {
+      type: Object,
+      required: true
+    },
+    img: {
       type: Object,
       required: true
     }
@@ -57,9 +61,6 @@ export default {
     changeInner() {
       this.order = !this.order;
     },
-    getPic(pic) {
-      return require("./img/" + pic + ".png");
-    },
     showPre() {
       document.body.style.overflow = "hidden";
       this.openModal = true;
@@ -68,12 +69,14 @@ export default {
       this.openModal = false;
       document.body.style.overflow = "";
     }
-  }
+  },
+  inject: ["getPic"],
 };
 </script>
 
 <style lang="scss">
 @import "./src/assets/styles/style";
+
 .close {
   position: absolute;
   top: 10%;
@@ -83,12 +86,14 @@ export default {
   font-weight: bold;
   transition: 0.3s;
 }
+
 .close:hover,
 .close:focus {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
 }
+
 .catalog {
   &-card {
     width: 290px;
@@ -183,6 +188,7 @@ export default {
     }
   }
 }
+
 .modal {
   display: block;
   position: fixed;
@@ -202,12 +208,14 @@ export default {
     max-width: 500px;
   }
 }
+
 .modal-content {
   margin: 30% auto;
   width: 100%;
   display: block;
   max-width: 500px;
 }
+
 @media (min-width: 768px) {
   .catalog {
     &-card {

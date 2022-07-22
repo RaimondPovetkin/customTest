@@ -1,14 +1,21 @@
-export const partnersState={
-    state:()=>({
+export const partnersState = {
+    state: () => ({
         title: "НАШИ ПАРТНЕРЫ",
-        images: ["severst","zavod","gf1"],
+        imagesParnters: ["severst", "zavod", "gf1"],
+        imagesProp: {
+            ext: "png",
+            dir: "partners"
+        },
     }),
-    getters:{
+    getters: {
         partnersStateTitle(state) {
-            return state.title
+            return state.title;
         },
         partnersStateImages(state) {
-            return state.images
+            return state.imagesParnters;
+        },
+        partnersStateImagesProp(state) {
+            return state.imagesProp;
         }
     }
-}
+};

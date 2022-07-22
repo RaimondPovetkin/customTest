@@ -20,25 +20,30 @@ export default {
       if (y) {
         y.remove();
       }
-      const center = this.allCitiesState[this.cityIndex].coords.slice(1, -1).split(",");
-      const city = this.allCitiesState[this.cityIndex].city;
-      const phone = this.allCitiesState[this.cityIndex].contacts;
-      const address = this.allCitiesState[this.cityIndex].address;
-
+      let placemarks = []
+      let state = this.allCitiesState
+      let index = this.cityIndex
+      const center = state[index].addresses[0].coords.slice(1, -1).split(",");
+      const city = state[index].city;
       function init() {
         let map = new window.ymaps.Map("map-test", {
           center: center,
           zoom: 10
         });
-        let placemark = new window.ymaps.Placemark(center, {
-          balloonContentHeader: city,
-          balloonContentBody: address,
-          balloonContentFooter: phone,
-        }, {
-          iconImageSize: [40, 40],
-          iconImageOffset: [-19, -44]
-        });
-        map.geoObjects.add(placemark);
+        for (let i of state[index].addresses){
+          let placemark = new window.ymaps.Placemark(i.coords.slice(1, -1).split(","), {
+            balloonContentHeader: city,
+            balloonContentBody: i.address,
+            balloonContentFooter: i.contacts,
+          }, {
+            iconImageSize: [40, 40],
+            iconImageOffset: [-19, -44]
+          });
+          placemarks.push(placemark)
+        }
+        for(let i of placemarks){
+          map.geoObjects.add(i);
+        }
       }
       window.ymaps.ready(init);
     },

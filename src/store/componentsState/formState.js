@@ -4,7 +4,9 @@ export const formState={
         description: "НА РАСЧЁТ СТОИМОСТИ",
         buttonText: "Заказать расчёт цены",
         rulesText: "Соглашаюсь с",
-        rulesLink: "условиями передачи данных"
+        rulesLink: "условиями передачи данных",
+        placeholderMail: "E-mail",
+        placeholderPhone: "Номер телефона"
     }),
     getters:{
         formStateTitle(state) {
@@ -21,6 +23,12 @@ export const formState={
         },
         formStateRulesLink(state) {
             return state.rulesLink
+        },
+        formPlaceholderMail(state) {
+            return state.placeholderMail
+        },
+        formPlaceholderPhone(state) {
+            return state.placeholderPhone
         }
     }
 }

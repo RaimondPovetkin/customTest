@@ -1,5 +1,5 @@
 <template>
-    <div class="banner banner__block">
+    <div id="banner" class="banner banner__block">
         <div class="banner-content">
             <div class="banner-content__title">
               {{ titleBanner }}

@@ -8,7 +8,8 @@
         <div class="advantages-content">
             <advantagesItem
                 v-for="advantage in allAdvantages" :key = advantage
-                :advantage="advantage" 
+                :advantage="advantage"
+                :img="imagesAdvantage"
             />
         </div>
     </div>   
@@ -19,7 +20,7 @@ import advantagesItem from './advantagesItem.vue'
 import {mapGetters} from "vuex";
 export default {
   components: { advantagesItem },
-  computed: mapGetters(["allAdvantages","titleAdvantage"])
+  computed: mapGetters(["allAdvantages","titleAdvantage","imagesAdvantage"])
 }
 </script>
 

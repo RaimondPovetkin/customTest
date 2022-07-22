@@ -22,6 +22,10 @@ export const reasonsState={
                 description:"Мы уделяем особое внимание качеству нашей продукции и дорожим нашими клиентами."
             },
         ],
+        images:{
+            ext: "svg",
+            dir: "why"
+        },
         title: "ПОЧЕМУ МЫ?"
     }),
     getters:{
@@ -30,6 +34,9 @@ export const reasonsState={
         },
         titleReasons(state) {
             return state.title
+        },
+        imagesReasons(state) {
+            return state.images
         }
     }
 }

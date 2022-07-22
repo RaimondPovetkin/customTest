@@ -2,13 +2,13 @@
   <div>
     <header id="header" class="header">
       <div class="header__content">
-        <a href="#" class="header__logo">
-          <img class="logo" src="./img/logo.svg" alt="">
+        <a href="#banner" class="header__logo" @click.prevent="goToBlock">
+          <img href="#banner" class="logo" :src=getPic(imagesPage.logoImg.name,imagesPage.logoImg.ext,imagesPage.dir) alt="">
         </a>
         <input id="header__hidden-check" type="checkbox"/>
         <label class='header__menu-button' for="header__hidden-check">
           <div class='menu-button'>
-            <img src="./img/b.svg" alt="">
+            <img :src=getPic(imagesPage.burgerImg.name,imagesPage.burgerImg.ext,imagesPage.dir) alt="">
           </div>
         </label>
         <div class="header__naw">
@@ -19,12 +19,12 @@
         </div>
         <div class="header__contacts">
           <div class="select-block">
-            <img class="select-block__logo" src="./img/map-marker.svg" alt="map-marker">
+            <img class="select-block__logo" :src=getPic(imagesPage.mapImg.name,imagesPage.mapImg.ext,imagesPage.dir) alt="map-marker">
             <a href="#map" class="select-block__link" @click.prevent="goToBlock">{{ getCity }}</a>
             <a href="#" class="select-block__row" @click.prevent="openPopap">Все города</a>
           </div>
           <div class="select-block">
-            <img class="select-block__logo" src="./img/phone.svg" alt="phone">
+            <img class="select-block__logo" :src=getPic(imagesPage.phoneImg.name,imagesPage.phoneImg.ext,imagesPage.dir) alt="phone">
             <a class="select-block__link" href="#">{{ getContactNumber }}</a>
             <a class="select-block__row" href="#">Заказать звонок</a>
           </div>
@@ -34,14 +34,12 @@
           <div class="popup__body">
             <div class="popup__content">
               <a href="#header" class="popup__close" @click.prevent="closePopap">
-                <img src="./img/close.svg" alt="">
+                <img :src=getPic(imagesPage.closeCrossImg.name,imagesPage.closeCrossImg.ext,imagesPage.dir) alt="">
               </a>
               <div class="popup__title">Выберите город</div>
               <div class="popup__text" @click='closePopap'>
                 <span v-for="(item, index) in allCitiesState" @click="indexCity=index" :key="item">
-                  <span>
                   {{ item.city }}
-                  </span>
                 </span>
               </div>
             </div>
@@ -80,14 +78,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["allCitiesState", "cityIndex"]),
+    ...mapGetters(["allCitiesState", "cityIndex", "imagesPage"]),
     getCity(){
       return this.allCitiesState[this.cityIndex].city
     },
     getContactNumber(){
-      return this.allCitiesState[this.cityIndex].contacts
+      return this.allCitiesState[this.cityIndex].addresses[0].contacts
     }
-  }
+  },
+  inject: ["getPic"],
 };
 </script>
 
@@ -210,7 +209,7 @@ export default {
       flex-direction: column;
 
       span {
-        margin: 5%;
+        padding: 5%;
         color: $color-green;
 
         &:hover {
@@ -307,7 +306,7 @@ export default {
 
       &:hover {
         text-decoration: underline 1px;
-        transform: scale(0.95);
+        transform: scale(1.05);
       }
 
       &:active {

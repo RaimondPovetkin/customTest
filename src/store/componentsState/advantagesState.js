@@ -26,6 +26,10 @@ export const advantagesState={
                 description:"Для выполнения работ Вам не требуется специальных знаний, Краб-система закрепляется при помощи болтов и гаек"
             },
         ],
+        images:{
+            ext: "svg",
+            dir: "advantages"
+        },
         title: "ПРЕИМУЩЕСТВА СИСТЕМЫ"
     }),
     getters:{
@@ -34,6 +38,9 @@ export const advantagesState={
         },
         titleAdvantage(state) {
             return state.title;
-        }
+        },
+        imagesAdvantage(state) {
+            return state.images;
+        },
     }
 }

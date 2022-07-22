@@ -10,12 +10,12 @@
                 <form class="form-inner" action="/login" method="post">
                     <div class="text-field">
                         <div class="text-field__icon">
-                            <input class="text-field__input phone" type="text" placeholder="Номер телефона">
+                            <input class="text-field__input phone" type="text" :placeholder=formPlaceholderPhone>
                         </div>
                     </div>
                     <div class="text-field">
                         <div class="text-field__icon">
-                            <input class="text-field__input mail" type="email" placeholder="E-mail">
+                            <input class="text-field__input mail" type="email" :placeholder=formPlaceholderMail>
                         </div>
                     </div>
                     <div>
@@ -37,7 +37,7 @@
 import {mapGetters} from "vuex";
 
 export default {
-  computed: mapGetters(["formStateTitle","formStateDescription", "formStateButtonText", "formStateRulesText", "formStateRulesLink"])
+  computed: mapGetters(["formStateTitle","formStateDescription", "formStateButtonText", "formStateRulesText", "formStateRulesLink", "formPlaceholderPhone", "formPlaceholderMail"])
 }
 </script>
 

@@ -6,12 +6,11 @@
       </div>
     </div>
     <div class="partners__content">
-
       <partner-item
           v-for="img in partnersStateImages" :key=img
           :img="img"
+          :imgProp="partnersStateImagesProp"
       />
-
     </div>
   </div>
 </template>
@@ -22,7 +21,7 @@ import {mapGetters} from "vuex";
 
 export default {
   components: {PartnerItem},
-  computed: mapGetters(["partnersStateTitle","partnersStateImages"])
+  computed: mapGetters(["partnersStateTitle", "partnersStateImages", "partnersStateImagesProp"])
 };
 </script>
 

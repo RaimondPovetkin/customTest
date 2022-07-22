@@ -1,6 +1,6 @@
 <template>
   <div class="advantages-box">
-    <img class="advantages-box__img" :src=getPic(advantage.pic) alt="">
+    <img class="advantages-box__img" :src=getPic(advantage.pic,img.ext,img.dir) alt="">
     <div class="advantages-box__explanation">
       <div class="advantages-box__title">
         {{ advantage.title }}
@@ -23,13 +23,13 @@ export default {
     advantage: {
       type: Object,
       required: true
+    },
+    img: {
+      type: Object,
+      required: true
     }
   },
-  methods: {
-    getPic(pic) {
-      return require("./img/" + pic + ".svg");
-    }
-  }
+  inject: ["getPic"],
 };
 </script>
 

@@ -9,6 +9,7 @@
       <feedBackItem
           v-for="comment in allComments" :key=comment
           :comment="comment"
+          :img="allCommentsImages"
       />
     </div>
   </div>
@@ -17,16 +18,19 @@
 <script>
 import feedBackItem from "./feedBackItem.vue";
 import {mapGetters} from "vuex";
+
 export default {
   components: {feedBackItem},
-  computed: mapGetters(["allCommentsTitle", "allComments"])
+  computed: mapGetters(["allCommentsTitle", "allComments", "allCommentsImages"])
 };
 </script>
 
 <style lang="scss">
 @import "./src/assets/styles/style";
+
 .feedback {
   background: url(/src/assets/images/background_feedback.png);
+
   .feedback-content {
     display: flex;
     flex-direction: column;
@@ -35,11 +39,13 @@ export default {
     padding: $padding-mobile-0;
   }
 }
+
 @media (min-width: 768px) {
   .feedback {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .feedback-content {
       margin-bottom: 40px;
       width: $width768px;
@@ -49,11 +55,13 @@ export default {
     }
   }
 }
+
 @media (min-width: 1024px) {
   .feedback {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .feedback-content {
       margin-bottom: 60px;
       width: $width1024px;
@@ -63,6 +71,7 @@ export default {
     }
   }
 }
+
 @media (min-width: 1280px) {
   .feedback {
     .feedback-content {

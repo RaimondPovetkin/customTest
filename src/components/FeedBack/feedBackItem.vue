@@ -1,7 +1,7 @@
 <template>
   <div class="feedback-content__box">
     <div class="feedback-content__pic-box">
-      <img class="feedback-content__pic" :src=getPic(comment.pic) alt="">
+      <img class="feedback-content__pic" :src=getPic(comment.pic,img.ext,img.dir) alt="">
     </div>
     <div class="feedback-content__text">
       <div class="feedback-content__title">
@@ -20,13 +20,13 @@ export default {
     comment: {
       type: Object,
       required: true
+    },
+    img: {
+      type: Object,
+      required: true
     }
   },
-  methods: {
-    getPic(pic) {
-      return require("./img/" + pic + ".png");
-    }
-  }
+  inject: ["getPic"],
 };
 </script>
 

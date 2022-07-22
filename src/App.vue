@@ -27,30 +27,36 @@ import FooterBlock from "@/components/Footer/footerBlock";
 import MapBlock from "@/components/Map/mapBlock";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HeaderBlock, BannerBlock, AdvantagesBlock, CatalogBlock, WhyAreWe, ManufactureBlock, FormBlock, PartnersBlock, FeedBack, FooterBlock, MapBlock
-  }
-}
+    HeaderBlock,
+    BannerBlock,
+    AdvantagesBlock,
+    CatalogBlock,
+    WhyAreWe,
+    ManufactureBlock,
+    FormBlock,
+    PartnersBlock,
+    FeedBack,
+    FooterBlock,
+    MapBlock
+  },
+  methods: {
+    getPic(pic, ext, dir) {
+      let folder = dir ? dir + "/" : "";
+      return require("/src/assets/images/" + folder + pic + "." + ext);
+    }
+  },
+  provide() {
+    return {
+      teseTest: this.teseTest,
+      getPic: this.getPic,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
- @import "./src/assets/styles/style";
+@import "./src/assets/styles/style";
 </style>
 
-<!--
-@import "./src/assets/styles/style";
-
-@media (min-width: 412px) {
-
-}
-@media (min-width: 768px) {
-
-}
-@media (min-width: 1024px) {
-
-}
-@media (min-width: 1280px) {
-
-}
--->
