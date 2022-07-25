@@ -9,17 +9,24 @@
           <img href="#banner" class="logo" :src=getPic(imagesPage.logoImg.name,imagesPage.logoImg.ext,imagesPage.dir)
                alt="">
         </a>
-        <input id="header__hidden-check" type="checkbox"/>
-        <label class='header__menu-button' for="header__hidden-check">
+        <input id="header__hidden-check" type="checkbox" v-model="burgerMenuOpen"/>
+        <label v-if="!burgerMenuOpen" class='header__menu-button' for="header__hidden-check">
           <div class='menu-button'>
             <img :src=getPic(imagesPage.burgerImg.name,imagesPage.burgerImg.ext,imagesPage.dir) alt="">
           </div>
         </label>
+
+        <label v-if="burgerMenuOpen" class='header__menu-button' for="header__hidden-check">
+          <div class='menu-button'>
+            <img :src=getPic(imagesPage.closeCrossImg.name,imagesPage.closeCrossImg.ext,imagesPage.dir) alt="">
+          </div>
+        </label>
+
         <div class="header__naw">
-          <a href="#catalog" class="header__link" @click.prevent="goToBlock">Каталог</a>
-          <a href="#form" class="header__link" @click.prevent="goToBlock">Расчёт стоимости</a>
-          <a href="#partners" class="header__link" @click.prevent="goToBlock">Партнёры</a>
-          <a href="#feedback" class="header__link" @click.prevent="goToBlock">Отзывы</a>
+          <a href="#catalog" class="header__link" @click.prevent="goToBlock($event); burgerMenuOpen = false">Каталог</a>
+          <a href="#form" class="header__link" @click.prevent="goToBlock($event); burgerMenuOpen = false">Расчёт стоимости</a>
+          <a href="#partners" class="header__link" @click.prevent="goToBlock($event); burgerMenuOpen = false">Партнёры</a>
+          <a href="#feedback" class="header__link" @click.prevent="goToBlock($event); burgerMenuOpen = false">Отзывы</a>
         </div>
         <div class="header__contacts">
           <div class="select-block">
@@ -66,6 +73,8 @@ export default {
   data() {
     return {
       openPop: false,
+      yyy:false,
+      burgerMenuOpen: false,
       indexCity: 0
     };
   },
@@ -74,6 +83,9 @@ export default {
     openPopap() {
       this.openPop = true;
       document.body.style.overflow = "hidden";
+    },
+    closeMenu(){
+      console.log("dddd");
     },
     closePopap() {
       this.changeIndex(this.indexCity);
