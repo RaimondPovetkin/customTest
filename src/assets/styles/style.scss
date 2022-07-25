@@ -54,6 +54,7 @@
 
     &:hover{
       background: #3BBB03;
+      cursor: pointer;
     }
     &:active{
       background: #298601;
@@ -91,6 +92,7 @@ $color-grey: #2E363E;
 $color-black: #000;
 $color-darkGrey: #212529;
 $color-green: #319F01;
+$color-red: #dc5454;
 
 html, body {
   height: 100%;

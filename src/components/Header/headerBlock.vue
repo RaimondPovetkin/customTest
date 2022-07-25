@@ -31,8 +31,8 @@
           <div class="select-block">
             <img class="select-block__logo" :src=getPic(imagesPage.phoneImg.name,imagesPage.phoneImg.ext,imagesPage.dir)
                  alt="phone">
-            <a class="select-block__link" href="#">{{ getContactNumber }}</a>
-            <a class="select-block__row" href="#">Заказать звонок</a>
+            <a href="#form" class="select-block__link" @click.prevent="goToBlock">{{ getContactNumber }}</a>
+            <a href="#form" class="select-block__row" @click.prevent="goToBlock">Заказать звонок</a>
           </div>
         </div>
         <div v-if="openPop" id="popup" class="popup">
@@ -83,7 +83,7 @@ export default {
     goToBlock(e) {
       document.querySelector(e.target.getAttribute("href")).scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "center"
       });
     }
   },
