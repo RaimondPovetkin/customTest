@@ -83,14 +83,15 @@ export default {
     openPopap() {
       this.openPop = true;
       document.body.style.overflow = "hidden";
-    },
-    closeMenu(){
-      console.log("dddd");
+      document.body.style.paddingRight = "16px";
+      document.getElementById("header").style.paddingRight = "16px";
     },
     closePopap() {
       this.changeIndex(this.indexCity);
       this.openPop = false;
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "0px";
+      document.getElementById("header").style.paddingRight = "0px";
     },
     goToBlock(e) {
       document.querySelector(e.target.getAttribute("href")).scrollIntoView({
